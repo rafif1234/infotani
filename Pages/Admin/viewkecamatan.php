@@ -56,35 +56,36 @@
                         <td>
                         <a href="ubahkecamatan.php?id=<?php echo $data['ID_KECAMATAN'];?>"><button class="pilih btn btn-primary"><span class="fa fa-pencil">
                         </span></button></a>
-                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat"><span class="fa fa-trash">
-                        </span></button></td>
-                        <!--modal-->
-
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog" role="document">
-                              <form action="../../controller/admin/controllerkecamatan.php" method="post">
-                                  <input type="hidden" name="idhapus" value="<?php echo $data['ID_KECAMATAN'];?>">
-                                  <div class="modal-dialog modal-confirm">
+                        <a href="#del<?php echo $data['ID_KECAMATAN'];?>" data-toggle="modal" class="btn btn-danger"><span class="fa fa-trash"></a>
+                        <!-- Delete -->
+                        <div class="modal fade" id="del<?php echo $data['ID_KECAMATAN']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <form action="../../controller/admin/controllerkecamatan.php" method="post">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <div class="icon-box">
-                                                <i class="material-icons">&#xE5CD;</i>
-                                            </div>
-                                            <h4 class="modal-title">Apakah Anda Ingin Menghapus?</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <center><h4 class="modal-title" id="myModalLabel">Hapus</h4></center>		<!-- button untuk pilihan del -->
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" name="hapus" class="btn btn-danger">Delete</button>
+                                        <?php
+                                            require_once "../../controller/admin/koneksi.php";
+                        					$del=mysqli_query($koneksi, "select * from kecamatan where ID_KECAMATAN='".$data['ID_KECAMATAN']."'");
+                        					$drow=mysqli_fetch_array($del);
+                        				?>
+                                        <div class="modal-footer">		<!-- pilihan button yang terdapat dalam delete ada cancel dan delete -->
+                                            <input type="hidden" name="idhapus" value="<?php echo $drow['ID_KECAMATAN']; ?>">
+                                            <h5><center>Apakah yakin ingin menghapus Kecamatan <strong><?php echo $drow['NAMA_KECAMATAN']; ?></strong> ?</center></h5>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Batal</button>
+                                            <button type="submit" class="btn btn-danger" name="hapus"><span class="fa fa-trash"></span> Hapus</button>
                                         </div>
                                     </div>
                                 </div>
-                              </form>
-                          </div>
+                            </form>
                         </div>
+                        <!-- /.modal -->
+                        </td>
+                    </tr>
                     <?php
                     } ?>
-                    </tr>
                 </tbody>
               </table>
             </div>

@@ -45,7 +45,10 @@
                     $sql = "SELECT * FROM kecamatan WHERE kecamatan.ID_KECAMATAN='$id'";
                     $querykec = mysqli_query($koneksi, $sql);
                     while ($data = mysqli_fetch_array($querykec)) {?>
-                <input type="hidden" name="idkecamatan" value="<?php echo $data['ID_KECAMATAN']?>">
+                <div class="form-group">
+                    <label>Id Kecamatan</label>
+                    <input type="text" name="idkecamatan" value="<?php echo $data['ID_KECAMATAN']?>" class="form-control" readonly>
+                </div>
                 <div class="form-group">
                     <label>Nama Desa</label>
                     <?php

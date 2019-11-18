@@ -47,9 +47,13 @@
                     //query untuk menampilkan sebuah query select dari table tb_siswa dengan id siswa sebagai parameter
                     $query = mysqli_query($koneksi, "SELECT * FROM KOMODITAS WHERE ID_KOMODITAS='$id'");
                     while ($data = mysqli_fetch_array($query)) {?>
-                <input type="text" name="idkomoditas" value="<?php echo $data['ID_KOMODITAS']?>">
                 <div class="form-group">
-                    <label>Nama KOMODITAS</label>
+                    <!--menginputkan sebuah inputan nim bertipe text-->
+                    <label>Id Komoditas</label>
+                    <input type="text" name="idkomoditas" class="form-control" value="<?php echo $data['ID_KOMODITAS']?>" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Nama Komoditas</label>
                     <!--menginputkan sebuah inputan nim bertipe text-->
                     <input type="text" class="form-control" value="<?php echo $data['NAMA_KOMODITAS']?>" name="namakomoditas" required>
                 </div>
