@@ -42,7 +42,7 @@ require "koneksi.php";
 
         if ($result) {?>
             <script language="JavaScript">
-            alert('Ubah Berhasil !');
+            alert('Hapus Berhasil !');
             setTimeout(function() {window.location.href='../../pages/admin/viewdesa.php'},10);
             </script><?php
         }

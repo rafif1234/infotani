@@ -36,14 +36,15 @@
         <div class="container">
             <br>
             <!--membuat sebuah form-->
-            <form method="post" action="proses-daftar.php">
+            <form method="post" action="../../controller/admin/controllerkecamatan.php">
                 <div class="form-group">
                     <label>Nama Desa</label>
                     <?php
-                        require_once "../../controller/admin/controllerkecamatan.php";
-
+                        require_once "../../controller/admin/koneksi.php";
+                        $query = "select * from desa";
+                        $resultdesa = mysqli_query($koneksi, $query);
                        // ----------------------------------------
-                        echo "<select name='id_desa' class='form-control' onchange='changeValue(this.value)' required>";
+                        echo "<select name='iddesa' class='form-control' onchange='changeValue(this.value)' required>";
                         echo "<option value='' selected>=== Pilih Desa ===</option>";
                             while($row2=mysqli_fetch_array($resultdesa))
                             {

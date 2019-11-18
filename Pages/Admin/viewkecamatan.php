@@ -1,117 +1,108 @@
 <!DOCTYPE html>
 <html>
 <?php
-        include "../_partials/head.php";
+        include_once "../_partials/head.php";
 ?>
 <body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
     <!--header-->
     <?php
-            include "../_partials/header.php";
+            include_once "../_partials/header.php";
     ?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <?php
-        include "../_partials/sidebar.php";
-    ?>
-    </section>
-    <!-- /.sidebar -->
+        include_once "../_partials/sidebar.php";
+    ?>    <!-- /.sidebar -->
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-        <small>Control panel</small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
-
-    <!-- Main content -->
     <section class="content">
-      <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>150</h3>
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Tabel Kecamatan</h3>
+              <h3><a href="tambahkecamatan.php"><span class="fa fa-plus" style="position:static;float:Left"> Tambah Data</span></a></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>ID KECAMATAN</th>
+                  <th>NAMA DESA</th>
+                  <th>NAMA KECAMATAN</th>
+                  <th>AKSI(s)</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    require_once "../../controller/admin/koneksi.php";
+                    //query untuk menampilkan data table dari tb_siswa
+                    $query = mysqli_query($koneksi, "SELECT ID_KECAMATAN, NAMA_DESA, NAMA_KECAMATAN FROM kecamatan, desa where desa.ID_DESA=kecamatan.ID_DESA");
+                    //echo $query;
+                    while($data = mysqli_fetch_array($query)) {  //merubah array dari objek ke array yang biasanya
+                    ?>
+                    <tr>
+                        <!--memangambil data dari tabel dengan mengisikan data di table-->
+                        <td><?php echo $data ['ID_KECAMATAN'];?></td>
+                        <td><?php echo $data ['NAMA_DESA'];?></td>
+                        <td><?php echo $data ['NAMA_KECAMATAN'];?></td>
+                        <td>
+                        <a href="ubahkecamatan.php?id=<?php echo $data['ID_KECAMATAN'];?>"><button class="pilih btn btn-primary"><span class="fa fa-pencil">
+                        </span></button></a>
+                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat"><span class="fa fa-trash">
+                        </span></button></td>
+                        <!--modal-->
 
-              <p>Desa</p>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <form action="../../controller/admin/controllerkecamatan.php" method="post">
+                                  <input type="hidden" name="idhapus" value="<?php echo $data['ID_KECAMATAN'];?>">
+                                  <div class="modal-dialog modal-confirm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <div class="icon-box">
+                                                <i class="material-icons">&#xE5CD;</i>
+                                            </div>
+                                            <h4 class="modal-title">Apakah Anda Ingin Menghapus?</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" name="hapus" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                              </form>
+                          </div>
+                        </div>
+                    <?php
+                    } ?>
+                    </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="icon">
-              <i class="fa fa-map-pin"></i>
-            </div>
-            <a href="#" class="small-box-footer">Informasi Lengkap<i class="fa fa-arrow-circle-right"></i></a>
+            <!-- /.box-body -->
           </div>
+          <!-- /.box -->
         </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Komoditas</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-tree"></i>
-            </div>
-            <a href="#" class="small-box-footer">Informasi Lengkap<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3>44</h3>
-
-              <p>Petani</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <a href="#" class="small-box-footer">Informasi Lengkap<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-red">
-            <div class="inner">
-              <h3>65</h3>
-
-              <p>Pengguna</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-person-add"></i>
-            </div>
-            <a href="#" class="small-box-footer">Informasi Lengkap<i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
+        <!-- /.col -->
       </div>
       <!-- /.row -->
-      <!-- Main row -->
-      <div class="row">
-      </div>
-      <!-- /.row (main row) -->
-
     </section>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-    <?php
-        include "../_partials/footer.php";
-        ?>
+  <?php
+        include_once "../_partials/footer.php";
+  ?>
 
   <!-- Control Sidebar -->
 
@@ -124,7 +115,12 @@
 
 <!-- jQuery 2.2.3 -->
 <?php
-    include "../_partials/js.php";
+    include_once "../_partials/js.php";
 ?>
+
+
 </body>
+
+
+
 </html>

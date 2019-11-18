@@ -40,7 +40,7 @@ require "koneksi.php";
 
         if ($result) {?>
             <script language="JavaScript">
-            alert('Ubah Berhasil !');
+            alert('Hapus Berhasil !');
             setTimeout(function() {window.location.href='../../pages/admin/viewbulan.php'},10);
             </script><?php
         }
