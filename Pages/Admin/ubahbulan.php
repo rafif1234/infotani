@@ -47,10 +47,7 @@
                     //query untuk menampilkan sebuah query select dari table tb_siswa dengan id siswa sebagai parameter
                     $query = mysqli_query($koneksi, "SELECT * FROM bulan WHERE ID_BULAN='$id'");
                     while ($data = mysqli_fetch_array($query)) {?>
-                <div class="form-group">
-                    <label>Id Bulan</label>
-                    <input type="text" name="id_bulan" value="<?php echo $data['ID_BULAN']?>" class="form-control" readonly>
-                </div>
+                <input type="hidden" name="id_bulan" value="<?php echo $data['ID_BULAN']?>">
     			<div class="form-group">
     				<label>Nama Bulan</label>
     				<!--menginputkan sebuah inputan nim bertipe text-->

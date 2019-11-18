@@ -47,10 +47,5 @@
              alert('Hapus Berhasil !');
              setTimeout(function() {window.location.href='../../pages/admin/viewkecamatan.php'},10);
              </script><?php
-         } else {?>
-             <script language="JavaScript">
-             alert('Hapus Gagal ! Data di pakai');
-             setTimeout(function() {window.location.href='../../pages/admin/viewkecamatan.php'},10);
-             </script><?php
          }
      }

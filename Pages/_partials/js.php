@@ -67,3 +67,18 @@
     });
   });
 </script>
+
+    <script>
+        $(function(){
+            $(document).on('click','.hapus',function(e){
+                e.preventDefault();
+                $("#exampleModal").modal('show');
+                $.post('../../controller/admin/hasil.php',
+                    {id:$(this).attr('data-id')},
+                    function(html){
+                        $(".modal-body").html(html);
+                    }
+                );
+            });
+        });
+    </script>
