@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label>Nama Desa</label>
                     <!--menginputkan sebuah inputan nim bertipe text-->
-                    <input type="text" class="form-control" value="<?php echo $data['NAMA_DESA']?>" name="namadesa" required> 
+                    <input type="text" class="form-control" value="<?php echo $data['NAMA_DESA']?>" name="namadesa" required>
                 </div>
                 <input type="submit" name="ubah" class="btn btn-success" value="Simpan">
                 <input type="reset" name="reset" class="btn btn-danger" value="Hapus">
