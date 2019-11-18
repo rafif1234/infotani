@@ -54,14 +54,13 @@
                         <td>
                         <a href="ubahdesa.php?id=<?php echo $data['ID_DESA'];?>"><button class="pilih btn btn-primary"><span class="fa fa-pencil">
                         </span></button></a>
+                        <a href="../../controller/admin/hapus.php?id=<?php echo $data['ID_DESA'];?>"><button class="pilih btn btn-primary">Delete</button></a>
                          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat"><span class="fa fa-trash">
-                        </span></button></td>
-                        <!--modal-->
+                        </span></button>
 
+                        <!--modal-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog" role="document">
-                              <form action="../../controller/admin/controllerdesa.php" method="post">
-                                  <input type="hidden" name="idhapus" value="<?php echo $data['ID_DESA'];?>">
                                   <div class="modal-dialog modal-confirm">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -73,16 +72,16 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                                            <button type="submit" name="hapus" class="btn btn-danger">Delete</button>
+                                            <a href="../../controller/admin/hapus.php?id=<?php echo $data['ID_DESA'];?>"><button class="pilih btn btn-primary">Delete</button></a>
                                         </div>
                                     </div>
                                 </div>
-                              </form>
                           </div>
                         </div>
+                        </td>
+                        </tr>
                     <?php
                     } ?>
-                    </tr>
                 </tbody>
               </table>
             </div>
